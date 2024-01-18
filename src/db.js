@@ -53,6 +53,8 @@ class Database {
 
     this.#database[table][rowIndex] = { id, ...data }
     this.#persist()
+
+    return true
   }
 
   delete(table, id) {
@@ -64,6 +66,8 @@ class Database {
 
     this.#database[table].splice(rowIndex, 1)
     this.#persist()
+
+    return true
   }
 }
 
