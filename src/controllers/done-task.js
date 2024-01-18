@@ -3,11 +3,11 @@ import { db } from "../db.js";
 export function doneTask(req, res) {
   const { id } = req.params;
 
+  if (!id) return res.writeHead(400).end(JSON.stringify({ error: 'Id is required'}));
+
   const taskSelected = db.select('tasks', { id });
 
-  if (!taskSelected[0]) {
-    return res.writeHead(404).end();
-  }
+  if (!taskSelected[0]) return res.writeHead(404).end(JSON.stringify({ error: 'Task not found'}));
 
   const [task] = taskSelected
 
